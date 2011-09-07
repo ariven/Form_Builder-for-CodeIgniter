@@ -28,6 +28,8 @@
 			name : $('#field_name').val(),
 			label : $('#field_label').val(),
 			type : $('#field_type').val(),
+			size : $('#field_size').val(),
+			maxlength : $('#field_maxlength').val(),			
 			validation : $('#field_validation').val()
 		}
 		$.post("/tools/ajax_form_builder_new_field", post_data, function(data) {
