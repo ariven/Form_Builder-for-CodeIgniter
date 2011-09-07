@@ -77,9 +77,10 @@ class Tools extends CI_Controller {
 			$data['field_name'] = $field_info['name'];
 			$data['field_label'] = $field_info['label'];
 			$data['field_type'] = $field_info['type'];
+			$data['size'] = $field_info['size'];
+			$data['maxlength'] = $field_info['maxlength'];
 			$return_string .= $this->load->view($template_dir.'/form_builder_item', $data, TRUE);
 		}
-
 		$return_string .= $this->load->view($template_dir.'/submit_button', $data, TRUE);
 		$return_string .= '</form>';
 		return $return_string;
@@ -195,17 +196,83 @@ class Tools extends CI_Controller {
 		$field_name = $this->input->post('name', TRUE);
 		$field_label = $this->input->post('label', TRUE);
 		$field_type = $this->input->post('type', TRUE);
+		$field_size = $this->input->post('size', TRUE);
+		$field_max = $this->input->post('maxlength', TRUE);
 		$field_validation = $this->input->post('validation', TRUE);
-		if ($field_name <> FALSE && $field_label <> FALSE && $field_type <> FALSE && $field_validation <> FALSE) {
+		if ($field_name <> FALSE && $field_label <> FALSE && $field_type <> FALSE) {
 			$config['field_name'] = $field_name;
 			$config['field_label'] = $field_label;
 			$config['field_type'] = $field_type;
 			$config['field_validation'] = $field_validation;
+			if (is_numeric($field_size)) {
+				$config['size'] = $field_size;
+			}
+			if (is_numeric($field_max)) {
+				$config['maxlength'] = $field_max;
+			}
 			$snippet = $this->load->view('form_builder/form_builder_single_item', $config, TRUE);
 		} else {
 			$snippet =  '';
 		}
 		echo $snippet;
 	} // ajax_form_builder_new_field
+	
+	/**
+	 * returns JSON database structure of named table in current database. To be used for auto generation
+	 * of forms
+	 */
+	function ajax_database_structure() {
+		$table_name = $this->input->post('table', TRUE);
+		$database_name = $this->input->post('database', TRUE);
+		$username = $this->input->post('user', TRUE);
+		$password = $this->input->post('password', TRUE);
+		$hostname = $this->input->post('hostname', TRUE);
+		$exclude_ai = $this->input->post('exclude_ai', TRUE);
+
+		if ($table_name && $database_name && $username && $password && $hostname) {
+			// load alternate database
+			$config['hostname'] = $hostname;
+			$config['username'] = $username;
+			$config['password'] = $password;
+			//$config['database'] = $database_name;
+			$config['database'] = 'information_schema';
+			$config['dbdriver'] = "mysql";
+			$config['dbprefix'] = "";
+			$config['pconnect'] = FALSE;
+			$config['db_debug'] = TRUE;
+			$config['cache_on'] = FALSE;
+			$config['cachedir'] = "";
+			$config['char_set'] = "utf8";
+			$config['dbcollat'] = "utf8_general_ci";
+			//$db = $this->load->database($config);
+			$this->load->database($config);
+			$this->db->where('table_name', $table_name);
+			$this->db->where('table_schema', $database_name);
+			$request = $this->db->get('columns');
+			$rows = $request->result_array();
+			$columns = array();
+			foreach ($rows as $data) {
+				$row_data = array();
+				$exclude = FALSE;
+				if ($data['EXTRA'] == 'auto_increment') { // exclude auto increment fields
+					if ($exclude_ai) {
+						$exclude = TRUE;
+					}	
+				}
+				if (! $exclude) {
+					$row_data['column'] = strtolower($data['COLUMN_NAME']);
+					$row_data['type'] = $data['DATA_TYPE'];
+					$row_data['max_length'] = $data['CHARACTER_MAXIMUM_LENGTH'];
+					$row_data['key'] = $data['COLUMN_KEY'];
+					$row_data['extra'] = $data['EXTRA'];
+					$columns[] = $row_data;
+				}
+			}
+			echo json_encode($columns);
+		} else {
+		}
+	}// ajax_database_structure	
+	
+	
 } // class tools
 
