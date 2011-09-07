@@ -81,6 +81,16 @@
 							<span id="field_validation_error"></span>
 						</li>
 						<li>
+							<label for="field_size">Field Size</label>
+							<input type="number" id="field_size" name="field_size" />
+							<span id="size_error"></span>
+						</li>
+						<li>
+							<label for="field_maxlength">Field max length</label>
+							<input type="number" id="field_maxlength" name="field_maxlength" />
+							<span id="maxlength_error"></span>
+						</li>
+						<li>
 							<label for="add_field">Add a field</label>
 							<input type="button" value="add field" id="add_field" name="add_field"/>
 						</li>
