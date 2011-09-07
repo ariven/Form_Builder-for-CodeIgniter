@@ -1,7 +1,7 @@
 <?php
 	$field_name_php = sprintf('<?php echo $%s; ?>', $field_name);
 	$field_label_php = sprintf('<?php echo $%s; ?>', $field_label);
-	$field_name_set_value = sprintf('<?php echo set_value(\'%s\'); ?>', $field_name);
+	$field_name_set_value = sprintf('<?php if (isset($%s)) { echo $%s; } ?>', $field_name, $field_name);
 
 	// we use HTML5 tags too, non-supporting browsers treat them like type "text"
 	switch ($field_type) {
@@ -19,7 +19,7 @@
 		break;
 	case 'select': 
 		// only make one option, end user will have to fill the rest in
-		$format = "<select name=\"%2$s\" id=\"%2$s\" />\n\t<option value=\"%$1s\" selected>%$1s</option>\n</select>";
+		$format = "<select name=\"%2$s\" id=\"%2$s\" />\n\t<option value=\"%1$s\" selected>%1$s</option>\n</select>";
 		break;
 	case 'file': 
 		$format = '<input type="file" value="%1$s" name="%2$s" id="%2$s" />';
