@@ -14,15 +14,6 @@
 		$vars .= sprintf($var_format, $field_info['name'], $field_info['name']);
 		$error_array_contents .= sprintf($error_array_format, $field_info['name'], $field_info['name']);
 	}
-	/*
-	for ($loop = 1; $loop <= $field_count; $loop++) {
-		$f_name = 'field_'.$loop;
-		$l_name = 'label_'.$loop;
-		$rules .= sprintf($rules_format, $$f_name, $$l_name);
-		$vars .= sprintf($var_format, $$f_name, $$f_name);
-		$error_array_contents .= sprintf($error_array_format, $$f_name, $$f_name);
-	}
-	*/
 	
 ?>
 /**
@@ -35,11 +26,12 @@ function <?php echo $function_name; ?> {
 
 <?php echo $rules; ?>
 
+	// load any variables to refill the form
+	<?php echo $vars; ?>
+
 	$this->form_validation->set_rules($rules);
 	if ($this->form_validation->run() == FALSE) {
 		// first load or failed form
-		// load any variables to refill the form
-<?php echo $vars; ?>
 		$error = array(
 <?php echo $error_array_contents; ?>
 			);
