@@ -109,6 +109,8 @@
 		$('#field_label').val('');
 		$('#field_type').val('');
 		$('#field_validation').val('trim|required');
+		$('#field_size').val('');
+		$('#field_maxlength').val('');
 
 	}// clear_fields
 
@@ -124,6 +126,9 @@
 		field_info['label'] = $('#field_label').val();
 		field_info['type'] = $('#field_type').val();
 		field_info['validation'] = $('#field_validation').val();
+		field_info['size'] = $('#field_size').val();
+		field_info['maxlength'] = $('#field_maxlength').val();
+		
 		
 		if (field_info['name'].length == 0) {
 			valid = false;
@@ -145,7 +150,8 @@
 			fields[field_count]['label'] = $('#field_label').val();
 			fields[field_count]['type'] = $('#field_type').val();
 			fields[field_count]['validation'] = $('#field_validation').val();
-			
+			fields[field_count]['size'] = $('#field_size').val();
+			fields[field_count]['maxlength'] = $('#field_maxlength').val();
 			
 			reset_fields();
 		} else {
