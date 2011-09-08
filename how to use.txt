@@ -1,4 +1,3 @@
-
 Basically just swap in the files in this archive to the appropriate locations under your codeigniter installation, and access it via the your_domain.com/tools/form_builder url
 
 You can see a running copy of this at http://www.bottledsanity.com/tools/form_builder
@@ -35,4 +34,12 @@ js/form_builder.js - functions for running the form builder
 js/form_builder_functions.js - functions for running the form builder (could be combined with form_builder.js
 js/plugins.js - the cookie function from http://plugins.jquery.com/files/issues/jjquery.cookie-modified.js_.txt  -- needed for CSRF fix
 
+2011-09-08
+-----------
+
+Added functionality to import a mysql table.
+
+Just fill in the database fields at the bottom of the form and click "import table"
+Fill in the form name and action and then process the form and it should automagically generate the files needed based
+on the table format.
 
