@@ -1,4 +1,22 @@
 
+2011-09-08
+-----------
+
+Added functionality to import a mysql table.
+
+Just fill in the database fields at the bottom of the form and click "import table"
+Fill in the form name and action and then process the form and it should automagically generate the files needed based
+on the table format.
+
+I -strongly- urge that you host this yourself on your own server if you use this functionality.  While my demo site does
+not save the database information, you cannot trust that a system is not compromised or a person is trustworthy (even
+myself), so having this under your own control on a (preferably private) server is a much saner route.
+
+
+
+Original text:
+--------------
+
 Basically just swap in the files in this archive to the appropriate locations under your codeigniter installation, and access it via the your_domain.com/tools/form_builder url
 
 You can see a running copy of this at http://www.bottledsanity.com/tools/form_builder
