@@ -69,6 +69,10 @@
 		// it should be tagged as an editor.  
 		$format = '<textarea name="%2$s" id="%2$s" class="editor">%1$s</textarea>';
 		break;
+	default:
+		$format = '<input type="text" value="%1$s" name="%2$s" id="%2$s" %3$s />';
+		$insert_count = 3;
+		break;
 	}
 	if ($insert_count == 2) {
 		$input_str = sprintf($format, $field_label, $field_name);
