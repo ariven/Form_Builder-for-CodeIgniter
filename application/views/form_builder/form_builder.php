@@ -98,6 +98,7 @@
 					<input name="submit" type="submit" value="submit" />
 				</div>
 				</form>
+
 			</div>
 			<div class="box fivecol">
 				<h2 class="box-title">Form Fields</h2>
@@ -108,7 +109,23 @@
 				</div>
 				<div id="debug_point"></div>
 			</div>
-
+				<div class="box" style="clear:both; font-size: 9px;">
+					table: <input type="text" name="db_table" id="db_table" />
+					database: <input type="text" name="db_table" id="db_name" />
+					username: <input type="text" name="db_table" id="db_user" />
+					password: <input type="text" name="db_table" id="db_password" />
+					hostname: <input type="text" name="db_table" id="db_hostname" /> 
+					<button id="import_table">import table</button>
+					<br />
+					<div>
+						<div id="db_status"></div>
+						<div id="db_table_error"></div>
+						<div id="db_name_error"></div>
+						<div id="db_user_error"></div>
+						<div id="db_password_error"></div>
+						<div id="db_hostname_error"></div>
+					</div>
+				</div>
 		</div>
 
 	</div><!-- tab 1 -->
