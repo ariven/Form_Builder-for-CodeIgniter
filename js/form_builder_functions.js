@@ -129,7 +129,6 @@
 		field_info['size'] = $('#field_size').val();
 		field_info['maxlength'] = $('#field_maxlength').val();
 		
-		
 		if (field_info['name'].length == 0) {
 			valid = false;
 			set_error('#field_name_error', 'Field name can not be empty');
@@ -152,11 +151,51 @@
 			fields[field_count]['validation'] = $('#field_validation').val();
 			fields[field_count]['size'] = $('#field_size').val();
 			fields[field_count]['maxlength'] = $('#field_maxlength').val();
-			
+
 			reset_fields();
 		} else {
 			error_message('There was a problem adding the field');
 		}
 	}// add_field_info
 
+	/**
+	 * used for bulk importing a database table
+	 */
+	function bulk_add_field_info (name, label, type, validation, size, maxlength) {
+		var valid = true;
 
+		field_info['name'] = name;
+		field_info['label'] = label;
+		field_info['type'] = type;
+		field_info['validation'] = validation;
+		field_info['size'] = size;
+		field_info['maxlength'] = maxlength;
+		
+		if (field_info['name'].length == 0) {
+			valid = false;
+			set_error('#field_name_error', 'Field name can not be empty');
+		} else {
+			clear_error('#field_name_error');
+		}
+		if (field_info['label'].length == 0) {
+			valid = false;
+			set_error('#field_label_error', 'Field label can not be empty');
+		} else {
+			clear_error('#field_label_error');
+		}
+		
+		if (valid) {
+			field_count = field_count + 1;
+			fields[field_count] = new Array();
+			fields[field_count]['name'] = field_info['name'];
+			fields[field_count]['label'] = field_info['label'];
+			fields[field_count]['type'] = field_info['type'];
+			fields[field_count]['validation'] = field_info['validation'];
+			fields[field_count]['size'] = field_info['size'];
+			fields[field_count]['maxlength'] = field_info['maxlength'];
+
+			reset_fields();
+		} else {
+			error_message('There was a problem adding the field');
+		}
+	}// bulk_add_field_info
