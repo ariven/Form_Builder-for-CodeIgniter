@@ -170,29 +170,17 @@
 		field_info['validation'] = validation;
 		field_info['size'] = size;
 		field_info['maxlength'] = maxlength;
-		
-		if (field_info['name'].length == 0) {
-			valid = false;
-			set_error('#field_name_error', 'Field name can not be empty');
-		} else {
-			clear_error('#field_name_error');
-		}
-		if (field_info['label'].length == 0) {
-			valid = false;
-			set_error('#field_label_error', 'Field label can not be empty');
-		} else {
-			clear_error('#field_label_error');
-		}
-		
+
+		// no error checking of name and label, since this is a bulk import from database table
 		if (valid) {
 			field_count = field_count + 1;
 			fields[field_count] = new Array();
-			fields[field_count]['name'] = field_info['name'];
-			fields[field_count]['label'] = field_info['label'];
-			fields[field_count]['type'] = field_info['type'];
-			fields[field_count]['validation'] = field_info['validation'];
-			fields[field_count]['size'] = field_info['size'];
-			fields[field_count]['maxlength'] = field_info['maxlength'];
+			fields[field_count]['name'] = name;
+			fields[field_count]['label'] = label;
+			fields[field_count]['type'] = type;
+			fields[field_count]['validation'] = validation;
+			fields[field_count]['size'] = size;
+			fields[field_count]['maxlength'] = maxlength;
 
 			reset_fields();
 		} else {
