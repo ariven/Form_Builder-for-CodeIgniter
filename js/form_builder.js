@@ -100,8 +100,12 @@
 					password: db_password,
 					hostname: db_hostname
 				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					$("#db_status").html(errorThrown);
+					$("#db_status").addClass('error');
+				},
 				success: function(msg) {
-					
+					$("#db_status").removeClass('error');
 					$("#db_status").addClass('info');
 					$("#db_status").html('Importing table...');
 					
@@ -164,20 +168,27 @@
 						if (msg[field]['extra'] != 'auto_increment') {
 							// AI fields are not added, they are auto increment
 							// insert
-							
-							$.post("/tools/ajax_form_builder_new_field", post_data, function(data) {
-								$('#insert_point').before(data);
-								bulk_add_field_info(
-									post_data['name'],
-									post_data['label'],
-									post_data['type'],
-									post_data['validation'],
-									post_data['size'],
-									post_data['max_length']
-								);
+							$.ajax({
+								url: "/tools/ajax_form_builder_new_field",
+								async: false,
+								type: "POST",
+								data: post_data,
+								error: function(jqXHR, textStatus, errorThrown) {
+									$("#db_status").html(errorThrown);
+									$("#db_status").addClass('error');
+								},
+								success: function(msg) {
+									$('#insert_point').before(msg);
+									bulk_add_field_info(
+										post_data['name'],
+										post_data['label'],
+										post_data['type'],
+										post_data['validation'],
+										post_data['size'],
+										post_data['max_length']
+									);
+								}
 							});
-							alert('check point');
-							
 						} // endif
 						
 					} // for
