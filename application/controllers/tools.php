@@ -231,6 +231,7 @@ class Tools extends CI_Controller {
 
 		if ($table_name && $database_name && $username && $password && $hostname) {
 			// load alternate database
+
 			$config['hostname'] = $hostname;
 			$config['username'] = $username;
 			$config['password'] = $password;
@@ -244,11 +245,12 @@ class Tools extends CI_Controller {
 			$config['cachedir'] = "";
 			$config['char_set'] = "utf8";
 			$config['dbcollat'] = "utf8_general_ci";
-			//$db = $this->load->database($config);
-			$this->load->database($config);
-			$this->db->where('table_name', $table_name);
-			$this->db->where('table_schema', $database_name);
-			$request = $this->db->get('columns');
+			
+			$db2 = $this->load->database($config, TRUE);
+
+			$db2->where('table_name', $table_name);
+			$db2->where('table_schema', $database_name);
+			$request = $db2->get('columns');
 			$rows = $request->result_array();
 			$columns = array();
 			foreach ($rows as $data) {
@@ -269,9 +271,7 @@ class Tools extends CI_Controller {
 				}
 			}
 			echo json_encode($columns);
-		} else {
-		}
-	}// ajax_database_structure	
+		}	}// ajax_database_structure	
 	
 	
 } // class tools
