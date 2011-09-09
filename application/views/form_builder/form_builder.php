@@ -95,7 +95,7 @@
 							<input type="button" value="add field" id="add_field" name="add_field"/>
 						</li>
 					</ol>
-					<input name="submit" type="submit" value="submit" />
+					<input name="submit" type="submit" value="Process Form" />
 				</div>
 				</form>
 
@@ -110,6 +110,11 @@
 				<div id="debug_point"></div>
 			</div>
 				<div class="box" style="clear:both; font-size: 9px;">
+					<p>To import, just fill in the fields and press the import table button.  I strongly urge you
+					to get the source for this tool here: <a target="_blank" href="https://github.com/ariven/Form_Builder-for-CodeIgniter">Form Builder on github</a>
+					and NOT trust this form.  I wouldn't trust a stranger on the interwebs with my
+					database password, and neither should you.</p>
+					
 					table: <input type="text" name="db_table" id="db_table" />
 					database: <input type="text" name="db_table" id="db_name" />
 					username: <input type="text" name="db_table" id="db_user" />
