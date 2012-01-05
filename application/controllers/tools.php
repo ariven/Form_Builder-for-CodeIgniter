@@ -82,8 +82,9 @@ class Tools extends CI_Controller {
 			$return_string .= $this->load->view($template_dir.'/form_builder_item', $data, TRUE);
 		}
 		$return_string .= $this->load->view($template_dir.'/submit_button', $data, TRUE);
-		$return_string .= '</form>';
-		return $return_string;
+		$return_string .= '<?php echo form_close(); ?>';
+		$data['content'] = $return_string;
+		return $this->load->view($template_dir.'/wrapper', $data, TRUE);
 	} // _generate_html_output
 
 	/**
