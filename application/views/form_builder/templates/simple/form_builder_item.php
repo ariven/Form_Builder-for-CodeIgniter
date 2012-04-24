@@ -19,7 +19,7 @@
 		break;
 	case 'select': 
 		// only make one option, end user will have to fill the rest in
-		$format = "<select name=\"%2$s\" id=\"%2$s\" />\n\t<option value=\"%$1s\" selected>%$1s</option>\n</select>";
+		$format = "&lt;select name=\"%2\$s\" id=\"%2\$s\" /&gt;\n\t&lt;option value=\"%1\$s\" selected&gt;%1\$s&lt;/option&gt;\n&lt;/select&gt;\n";
 		break;
 	case 'file': 
 		$format = '<input type="file" value="%1$s" name="%2$s" id="%2$s" />';

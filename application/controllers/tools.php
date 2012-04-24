@@ -70,7 +70,8 @@ class Tools extends CI_Controller {
 		$field_count = $variables['field_count'];
 		$return_string = '';
 		$attributes = array('id' => $variables['form_name']);
-		$return_string .= sprintf('<?php echo form_open(\'%s\', array(\'id\' => \'%s\')); ?>'."\n", $variables['form_action'], $variables['form_name']);
+		// for ease of readibility I am using double quotes in $return_string
+		$return_string .= sprintf('<?php echo form_open("%s", array("id" => "%s", "class" => "form-horizontal")); ?>'."\n", $variables['form_action'], $variables['form_name']);
 		$template_dir = 'form_builder/templates/'.$variables['template'];
 		$field_data = unserialize($variables['field_data']);
 		foreach ($field_data as $field_info) {
@@ -82,8 +83,9 @@ class Tools extends CI_Controller {
 			$return_string .= $this->load->view($template_dir.'/form_builder_item', $data, TRUE);
 		}
 		$return_string .= $this->load->view($template_dir.'/submit_button', $data, TRUE);
-		$return_string .= '<?php echo form_close(); ?>';
+		$return_string .= '<?php echo form_close(); ?>'."\n";
 		$data['content'] = $return_string;
+		$data['function_name'] = $variables['form_name'];
 		return $this->load->view($template_dir.'/wrapper', $data, TRUE);
 	} // _generate_html_output
 

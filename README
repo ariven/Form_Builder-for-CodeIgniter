@@ -1,3 +1,10 @@
+2012-04-23
+----------
+Fixed the <select> tag generation to not include a browser generated spurious </select> tag.
+Added a template that is intended for use with the Twitter Bootstrap css/javascript package.
+c.f. http://twitter.github.com/bootstrap/index.html  for more info on Bootstrap.
+
+
 
 2011-09-08
 -----------

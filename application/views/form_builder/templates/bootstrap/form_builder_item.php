@@ -68,14 +68,11 @@
 	}
 	$input_str = sprintf($format, $field_name_set_value, $field_name, $field_label, $size_str);
 ?>
-<div class="form_row">
-	<span class="form_label"><label for="<?php echo $field_name; ?>"><?php echo $field_label; ?></label></span>
-	<span class="form_input">
+<div class="control-group">
+	<label class="control-label" for="<?php echo $field_name; ?>"><?php echo $field_label; ?></label>
+	<div class="controls">
 		<?php echo $input_str; ?>
-	</span>
-	<span class="form_error" id="<?php echo $field_name;?>_error">
-<?php
-	echo sprintf('<?php if (isset($error[\'%s\'])) { echo $error[\'%s\']; } ?>', $field_name, $field_name);
-?>
-</span>
+		
+		<span class="form_error" id="<?php echo $field_name;?>_error"><?php echo sprintf('<?php if (isset($error[\'%s\'])) { echo $error[\'%s\']; } ?>', $field_name, $field_name); ?></span>
+	</div>
 </div>
