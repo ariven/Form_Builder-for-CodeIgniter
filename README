@@ -58,6 +58,6 @@ assets/css/images - images used for jquery-ui.css
 js/array_functions.js - a couple array functions needed for the process including one from http://phpjs.org/functions/serialize
 js/form_builder.js - functions for running the form builder
 js/form_builder_functions.js - functions for running the form builder (could be combined with form_builder.js
-js/plugins.js - the cookie function from http://plugins.jquery.com/files/issues/jjquery.cookie-modified.js_.txt  -- needed for CSRF fix
+js/plugins.js - the cookie function from https://github.com/carhartl/jquery-cookie  -- needed for CSRF fix
 
 
