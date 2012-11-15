@@ -7,15 +7,15 @@
 	<meta name="author" content="Patrick Spence">
 	<meta name="copyright" content="Copyright 2011"> 
 
-	<link rel="stylesheet" href="/assets/css/jquery-ui.css" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.css" />
 <?php
 	if (isset($css)) { 
 		if (is_array($css)) {
 			foreach ($css as $file) {
-				echo sprintf('<link rel="stylesheet" href="/assets/css/%s">'."\n", $file);
+				echo sprintf('<link rel="stylesheet" href="'.base_url().'/assets/css/%s">'."\n", $file);
 			}
 		} else {
-			echo sprintf('<link rel="stylesheet" href="/assets/css/%s">'."\n", $css);
+			echo sprintf('<link rel="stylesheet" href="'.base_url().'assets/css/%s">'."\n", $css);
 		}
 	} 
 ?>
