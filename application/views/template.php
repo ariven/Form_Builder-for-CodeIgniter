@@ -47,14 +47,14 @@
 	if (isset($javascript)) { 
 		if (is_array($javascript)) {
 			foreach ($javascript as $file) {
-				echo sprintf('<script src="/js/%s"></script>'."\n", $file);
+				echo sprintf('<script src="'.base_url().'js/%s"></script>'."\n", $file);
 			}
 		} else {
-			echo sprintf('<script src="/js/%s"></script>'."\n", $javascript);
+			echo sprintf('<script src="'.base_url().'js/%s"></script>'."\n", $javascript);
 		}
 	} 
 ?>
 	<!-- load custom plugins, including the cookie plugin needed for CSRF tags -->
-	<script src="/js/plugins.js"></script>
+	<script src="<?php echo base_url(); ?>js/plugins.js"></script>
 </body>
 </html>
