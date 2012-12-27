@@ -4,6 +4,7 @@ I forgot to mention here that the system is predicated on having the index.php r
 and will not work well (or in some cases at all) if it is not set up that way.
 
 The .htaccess that I use to eliminate index.php is this:
+
 ```
 <IfModule mod_rewrite.c>
 RewriteEngine On
