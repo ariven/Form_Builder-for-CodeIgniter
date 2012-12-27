@@ -1,3 +1,28 @@
+2012-12-26
+----------
+I forgot to mention here that the system is predicated on having the index.php removed via mod_rewrite (or whatever means)
+and will not work well (or in some cases at all) if it is not set up that way.
+
+The .htaccess that I use to eliminate index.php is this:
+    <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    RewriteCond %{REQUEST_URI} ^application.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+    </IfModule>
+
+This .htaccess may not work for you, so you may have to find another variant.  Also be sure to remove the index.php
+from the config.php file so that codeigniter doesn't expect it.
+
+
 2012-04-23
 ----------
 Fixed the <select> tag generation to not include a browser generated spurious </select> tag.
